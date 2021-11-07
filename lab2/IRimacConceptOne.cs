@@ -1,0 +1,4 @@
+interface IRimacConceptOne
+{
+    void RemoteOpenDoor();
+}

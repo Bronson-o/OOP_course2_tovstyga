@@ -8,7 +8,7 @@ using static System.Console;
 
         static CarWithICE()
         {
-            type = "ICE Car";
+            type = "Car with ICE";
         }
 
         public CarWithICE(string name, string number, double maxTankCapacity) : base(name, number)
@@ -42,7 +42,7 @@ using static System.Console;
 
         public override string GetCarDescription()
         {
-            return $"Car description: Holder: {holderName},\n Number: {number}],\n Type: {type},\n Tank capacity: {maxTankCapacity} Litres";
+            return $"Car description: holder: {holderName},\n number: {number}],\n type: {type},\n tank capacity: {maxTankCapacity} litres";
         }
     
         ~CarWithICE()
