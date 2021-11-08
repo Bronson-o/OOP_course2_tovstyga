@@ -1,0 +1,4 @@
+interface IZaporozhets
+{
+    void OpenTrunk();
+}

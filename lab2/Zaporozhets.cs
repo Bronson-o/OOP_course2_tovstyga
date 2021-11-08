@@ -1,14 +1,12 @@
 using System;
 using static System.Console;
 
-    class Zaporozhets : CarWithICE
+    class Zaporozhets : CarWithICE, ICarWithICE, IZaporozhets
     {
         private DateTime productionDate;
         private double expensePer100Km;
-        private static int price = 10000;
-        private bool bought = false;
 
-        private Zaporozhets()
+        private Zaporozhets() : base()
         {
             this.productionDate = DateTime.Now;
             this.expensePer100Km = 0;
@@ -19,45 +17,21 @@ using static System.Console;
             this.productionDate = DateTime.Now;
             this.expensePer100Km = expense;
         }
-
-
-        public static Zaporozhets GetCar(string name, string number, double tankCapacity, double expense, int money)
+        public static Zaporozhets GetCar(string name, string number, double tankCapacity, double expense)
         {
-            if(money >= price)
-            {
-                return new Zaporozhets(name, number, tankCapacity, expense) {
-                    bought = true
-                };
-            }
-            else
-            {
-                return null;
-            }
+            return new Zaporozhets(name, number, tankCapacity, expense); 
         }
-
-        public static Zaporozhets GetCar(int money)
+        public static Zaporozhets GetCar()
         {
-            if(money >= price)
-            {
-                return new Zaporozhets(){
-                    bought = true
-                };
-            }
-            else
-            {
-                return null;
-            }
             return new Zaporozhets(); 
         }
-
-
         public double Range
         {
             get
             {
                 if (expensePer100Km != 0)
                 {
-                    return maxTankCapacity / expensePer100Km;
+                    return maxTankCapacity/expensePer100Km;
                 }
                 else
                 {
@@ -65,7 +39,6 @@ using static System.Console;
                 }
             }
         }
-
         public double ExpensePer100Km
         {
             get
@@ -84,21 +57,18 @@ using static System.Console;
                 }
             }
         }
-
         public void OpenTrunk()
         {
             WriteLine("Trunk opened");
         }
-
         public override string GetCarDescription()
         {
-            return $"Car description: - Holder: {holderName},\n Number: {number} \n" + 
-            $"Type: {type}\n Tank Capacity: {maxTankCapacity} Litres\n" + 
-            $"Production Date: {productionDate.ToString("d")}";
+            return $" Car description: - holder: {holderName} - number: {number} -\n" + 
+            $"type: {type} - battery capacity: {maxTankCapacity} Watt*Hour -\n" + 
+            $"production Date: {productionDate.ToString("d")} -";
         }
-    
-        ~Zaporozhets()
-        {
-            WriteLine("Zaporozhets destructor called");
+        public override void Drive(double distance)
+        {   
+            WriteLine($"Zaporozhets drove {distance} km");
         }
     }

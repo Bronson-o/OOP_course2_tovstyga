@@ -1,14 +1,12 @@
 using System;
 using static System.Console;
 
-    class RimacConceptOne : ElectroCar
+    class RimacConceptOne : ElectroCar, IElectroCar, IRimacConceptOne
     {
         private DateTime productionDate;
         private double expensePer100Km;
-        private static int price = 100000;
-        private bool bought = false;
 
-        private RimacConceptOne()
+        private RimacConceptOne() : base()
         {
             this.productionDate = DateTime.Now;
             this.expensePer100Km = 0;
@@ -17,37 +15,17 @@ using static System.Console;
         private RimacConceptOne(string name, string number, double maxBatteryCapacity, double expense) : base(name, number, maxBatteryCapacity)
         {
             this.productionDate = DateTime.Now;
-            
             this.expensePer100Km = expense;
         }
 
 
-        public static RimacConceptOne GetCar(string name, string number, double maxBatteryCapacity, double expense, int money)
+        public static RimacConceptOne GetCar(string name, string number, double maxBatteryCapacity, double expense)
         {
-            if(money >= price)
-            {
-                return new RimacConceptOne(name, number, maxBatteryCapacity, expense){
-                    bought = true
-                };
-            }
-            else
-            {
-                return null;
-            }
+            return new RimacConceptOne(name, number, maxBatteryCapacity, expense); 
         }
 
-        public static RimacConceptOne GetCar(int money)
+        public static RimacConceptOne GetCar()
         {
-            if(money >= price)
-            {
-                return new RimacConceptOne(){
-                    bought = true
-                };
-            }
-            else
-            {
-                return null;
-            }
             return new RimacConceptOne(); 
         }
 
@@ -93,13 +71,13 @@ using static System.Console;
 
         public override string GetCarDescription()
         {
-            return $"Car description: - Holder: {holderName} - Number: {number} -\n" + 
-            $"- Type: {type} - Battery capacity: {maxBatteryCapacity} Watt * Hour -\n" + 
-            $"- Production Date: {productionDate.ToString("d")} -";
+            return $" Car description: - holder: {holderName} - number: {number} -\n" + 
+            $"type: {type} - battery capacity: {maxBatteryCapacity} Watt*Hour -\n" + 
+            $"production Date: {productionDate.ToString("d")} -";
         }
-
-        ~RimacConceptOne()
-        {
-            WriteLine("RimacConceptOne destructor called");
+    
+        public override void Drive(double distance)
+        {   
+            Console.WriteLine($"Rimac Concept One drove {distance} km");
         }
     }
