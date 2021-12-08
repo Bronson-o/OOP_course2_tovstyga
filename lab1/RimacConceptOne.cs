@@ -5,8 +5,10 @@ using static System.Console;
     {
         private DateTime productionDate;
         private double expensePer100Km;
+        private static int price = 100000;
+        private bool bought = false;
 
-        private RimacConceptOne() : base()
+        private RimacConceptOne()
         {
             this.productionDate = DateTime.Now;
             this.expensePer100Km = 0;
@@ -20,13 +22,32 @@ using static System.Console;
         }
 
 
-        public static RimacConceptOne GetCar(string name, string number, double maxBatteryCapacity, double expense)
+        public static RimacConceptOne GetCar(string name, string number, double maxBatteryCapacity, double expense, int money)
         {
-            return new RimacConceptOne(name, number, maxBatteryCapacity, expense); 
+            if(money >= price)
+            {
+                return new RimacConceptOne(name, number, maxBatteryCapacity, expense){
+                    bought = true
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public static RimacConceptOne GetCar()
+        public static RimacConceptOne GetCar(int money)
         {
+            if(money >= price)
+            {
+                return new RimacConceptOne(){
+                    bought = true
+                };
+            }
+            else
+            {
+                return null;
+            }
             return new RimacConceptOne(); 
         }
 

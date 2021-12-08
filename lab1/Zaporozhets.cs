@@ -5,8 +5,10 @@ using static System.Console;
     {
         private DateTime productionDate;
         private double expensePer100Km;
+        private static int price = 10000;
+        private bool bought = false;
 
-        private Zaporozhets() : base()
+        private Zaporozhets()
         {
             this.productionDate = DateTime.Now;
             this.expensePer100Km = 0;
@@ -19,13 +21,32 @@ using static System.Console;
         }
 
 
-        public static Zaporozhets GetCar(string name, string number, double tankCapacity, double expense)
+        public static Zaporozhets GetCar(string name, string number, double tankCapacity, double expense, int money)
         {
-            return new Zaporozhets(name, number, tankCapacity, expense); 
+            if(money >= price)
+            {
+                return new Zaporozhets(name, number, tankCapacity, expense) {
+                    bought = true
+                };
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public static Zaporozhets GetCar()
+        public static Zaporozhets GetCar(int money)
         {
+            if(money >= price)
+            {
+                return new Zaporozhets(){
+                    bought = true
+                };
+            }
+            else
+            {
+                return null;
+            }
             return new Zaporozhets(); 
         }
 

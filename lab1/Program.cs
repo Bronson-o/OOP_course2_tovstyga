@@ -9,7 +9,7 @@ using static System.Console;
             ElectroCar eCar = new ElectroCar("Yarichelo", "CA2288FF", 10000);
             CarWithICE iceCar = new CarWithICE("Maximus", "BH0000AK", 60);
 
-            Zaporozhets zaporozhets = Zaporozhets.GetCar("Andrew", "AA1111EE", 70, 4);
+            Zaporozhets zaporozhets = Zaporozhets.GetCar("Andrew", "AA1111EE", 70, 4, 100000);
             DisposeCars();
             WriteLine("\nMemory before creating 10000 obj: " + GC.GetTotalMemory(false));
             
@@ -33,11 +33,11 @@ using static System.Console;
 
         private static void DisposeCars()
         {
-            RimacConceptOne rimac = RimacConceptOne.GetCar();
+            RimacConceptOne rimac = RimacConceptOne.GetCar(20000000);
             rimac.Dispose();
             GC.ReRegisterForFinalize(rimac);
 
-            Zaporozhets zaporozhets = Zaporozhets.GetCar();
+            Zaporozhets zaporozhets = Zaporozhets.GetCar(100000);
             zaporozhets.Dispose();
             GC.ReRegisterForFinalize(zaporozhets);
         }
