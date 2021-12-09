@@ -112,7 +112,7 @@ namespace task2
             }
             else
             {
-                Console.WriteLine("\nOoops, unknown command!\nPlease, try again.");
+                WriteLine("\nOoops, unknown command!\nPlease, try again.");
             }
         }
     }
@@ -128,7 +128,7 @@ namespace task2
             }
             else
             {
-                Console.WriteLine($"\nOops, user {reader.name}, you are not logged in!\nPlease, log in and try again.\n");
+                WriteLine($"\nOops, user {reader.name}, you are not logged in!\nPlease, log in and try again.\n");
             }
         }
     }
